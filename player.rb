@@ -1,3 +1,15 @@
+# Class: Player
+#
+# Creates a new player object for the RockPaperScissors class.
+#
+# Attributes:
+# name             - String: the name of the player obj.
+# games_won        - Integer: the running total of the player's wins during a best of three match. 
+# moves            - Integer: the choice they want for the game
+#
+# Public Methods:
+# #choose_a_move
+# 
 
 class Player
   
@@ -10,7 +22,19 @@ class Player
   
   end
 
-  
+  # Public: #choose_a_move
+  # Prompts the player for a move.  Validates the move before sending it back to rps.
+  #
+  # Parameters:
+  # none  - .
+  #
+  #
+  # Returns:
+  # @moves  : The player's choice.
+  #
+  # State changes:
+  # @moves
+    
   def choose_a_move
     puts "#{name}: would you like: 1 = rock, 2 = paper, or 3 = scissors? "
     @moves = gets.chomp.to_i
