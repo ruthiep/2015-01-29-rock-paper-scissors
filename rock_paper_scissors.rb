@@ -86,22 +86,22 @@ class RockPaperScissors
       make_a_move
       puts @player1.moves
       puts @player2.moves
-      if @player1.moves == 1
-          if @player2.moves == 2
+      if @player1.moves.last == 1
+          if @player2.moves.last == 2
               puts "Player2 wins! Paper covers rock."
               @p2_games_won += 1
-          elsif @player2.moves == 3
+          elsif @player2.moves.last == 3
               puts "Player1 wins! Rock smashes scissors!"
               @p1_games_won += 1
           else
               puts "Tie. You both picked rock."
           end
 
-      elsif @player1.moves == 2
-          if @player2.moves == 1
+      elsif @player1.moves.last == 2
+          if @player2.moves.last == 1
               puts "Player1 wins! Paper covers rock."
               @p1_games_won += 1
-          elsif @player2.moves == 3
+          elsif @player2.moves.last == 3
               puts "Player2 wins! Scissors cut paper."
               @p2_games_won += 1
           else
@@ -109,10 +109,10 @@ class RockPaperScissors
           end
 
       else
-          if @player2.moves == 1
+          if @player2.moves.last == 1
              puts "Player2 wins! Rock smashes scissors."
              @p2_games_won += 1
-          elsif @player2.moves == 2
+          elsif @player2.moves.last == 2
              puts "Player1 wins! Scissors cut paper."
              @p1_games_won += 1
           else
@@ -137,10 +137,11 @@ class RockPaperScissors
   def winner_of_match
     start_game
     winner_of_game
+    puts @moves.join(" ")
     if @p1_games_won == 3
       puts "Nice match! #{@player1.name} wins!"
 
-    elsif @p2_games_won == 3
+    else @p2_games_won == 3
       puts "#{@player2.name} takes it this time!"
     end
   end

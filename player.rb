@@ -18,8 +18,9 @@ class Player
   def initialize( name )
     @name = name
     @games_won = 0
-    @moves = 0
-  
+    @turn = 0
+    @moves = []
+      
   end
 
   # Public: #choose_a_move
@@ -37,20 +38,22 @@ class Player
     
   def choose_a_move
     puts "#{name}: would you like: 1 = rock, 2 = paper, or 3 = scissors? "
-    @moves = gets.chomp.to_i
+    @turn = gets.chomp.to_i
     
     check = false
     while check == false do 
-      if @moves == 1 || @moves == 2 || @moves == 3
+      if @turn == 1 || @turn == 2 || @turn == 3
           puts "good job"
           check = true
+          @moves << @turn
       else 
         puts "#{name}, we're not playing rock, paper, scissors, lizard, spock here.  Pick a valid choice next time."
         
       end #end of if else
       
     end  #end of while
-    return @moves
+    return @turn
+    #return @moves.last
   end #end of method
 
 end #end of class
