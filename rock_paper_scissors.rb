@@ -84,8 +84,8 @@ class RockPaperScissors
   def winner_of_game    
     while @p1_games_won < 3 && @p2_games_won < 3
       make_a_move
-      puts @player1.moves
-      puts @player2.moves
+     # puts @player1.moves
+      #puts @player2.moves
       if @player1.moves.last == 1
           if @player2.moves.last == 2
               puts "Player2 wins! Paper covers rock."
@@ -137,7 +137,7 @@ class RockPaperScissors
   def winner_of_match
     start_game
     winner_of_game
-    puts @moves.join(" ")
+    puts @player1.moves.join(" ")
     if @p1_games_won == 3
       puts "Nice match! #{@player1.name} wins!"
 
