@@ -10,30 +10,27 @@ class Player
     #@moves = []
   
   end
-  
+
   
   def choose_a_move
-    puts "#{name}: would you like: 1-rock, 2-paper or 3-scissors? "
-    move = gets.chomp.to_i
-
-    # while...need to change this so it isn't an infinite loop
-       move != 1 || move != 2 || move != 3
-      puts "#{name}, we're not playing rock, paper, scissors, lizard, spock here.  Pick a valid choice next time."
-      #end
-    #return move
+    puts "#{name}: would you like: rock, paper or scissors? "
+    @moves[move] = gets.chomp.downcase
     
-  end
+    check = false
+    while !check
+      if move != "rock" || move != "paper" || move != "scissors" 
+          puts "#{name}, we're not playing rock, paper, scissors, lizard, spock here.  Pick a valid choice next time."
+      else 
+        puts "good job"
+        check = true
+      end
+      #return @moves
+    end
 
-  #
-  # if p1_games_won == 3
-  #     puts "Nice match! Player1 wins!"
-  #
-  # elsif p2_games_won == 3
-  #     puts "Player2 takes it this time!"
-  #
-  # end
+  
 
 end
 
+end 
 
 binding.pry
