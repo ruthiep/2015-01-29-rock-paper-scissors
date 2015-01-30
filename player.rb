@@ -2,34 +2,34 @@ require 'pry'
 
 class Player
   
-  attr_accessor :name, :games_won
+  attr_accessor :name, :games_won, :moves
   
   def initialize( name )
     @name = name
     @games_won = 0
-    #@moves = []
+    @moves = " "
   
   end
 
   
   def choose_a_move
-    puts "#{name}: would you like: rock, paper or scissors? "
-    @moves[move] = gets.chomp.downcase
+    puts "#{name}: would you like: 1 = rock, 2 = paper or 3 = scissors? "
+    moves = gets.chomp.to_i
+    
     
     check = false
-    while !check
-      if move != "rock" || move != "paper" || move != "scissors" 
-          puts "#{name}, we're not playing rock, paper, scissors, lizard, spock here.  Pick a valid choice next time."
+    while check = false do 
+      if moves == 1 || moves == 2 || moves == 3
+          puts "good job"
+          check = true
       else 
-        puts "good job"
-        check = true
+        puts "#{name}, we're not playing rock, paper, scissors, lizard, spock here.  Pick a valid choice next time."
+        
       end
-      #return @moves
-    end
+      return moves
+    end  
 
-  
-
-end
+  end
 
 end 
 
