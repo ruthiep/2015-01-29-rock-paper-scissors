@@ -1,5 +1,5 @@
 require 'pry'
-require_relative 'Player'
+require_relative 'player'
 
 class RockPaperScissors
   
@@ -33,7 +33,6 @@ class RockPaperScissors
     name = gets.chomp.capitalize
     @player2 = Player.new(name)
     puts "Ok, #{@player1.name} and #{@player2.name}, Good luck!!"
-   
   end
 
   def make_a_move
@@ -41,10 +40,11 @@ class RockPaperScissors
     @player2.choose_a_move
   end
   
-  def determine_winner_of_match
-    
+  def determine_winner_of_match    
     while @p1_games_won < 3 && @p2_games_won < 3
       make_a_move
+      puts @player1.moves
+      puts @player2.moves
       if @player1.moves == 1
           if @player2.moves == 2
               puts "Player2 wins! Paper covers rock."
@@ -82,18 +82,16 @@ class RockPaperScissors
   end  #end of method
 
   def winner_of_game
+    start_game
     determine_winner_of_match
     if @p1_games_won == 3
-      puts "Nice match! #{player1} wins!"
+      puts "Nice match! #{@player1.name} wins!"
 
     elsif @p2_games_won == 3
-      puts "#{player2} takes it this time!"
-
+      puts "#{@player2.name} takes it this time!"
+    end
   end
-
 
 end  #end of class
 
 binding.pry
-
-
