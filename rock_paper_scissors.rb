@@ -81,45 +81,23 @@ class RockPaperScissors
   # State changes:
   # adds to @p1_games_won and @p2_games_won
   
-  def winner_of_game    
-    while @p1_games_won < 3 && @p2_games_won < 3
+  def
+     winner_of_game    
+    until @p1_games_won == 3 || @p2_games_won == 3
       make_a_move
-     # puts @player1.moves
-      #puts @player2.moves
-      if @player1.moves.last == 1
-          if @player2.moves.last == 2
-              puts "Player2 wins! Paper covers rock."
-              @p2_games_won += 1
-          elsif @player2.moves.last == 3
-              puts "Player1 wins! Rock smashes scissors!"
-              @p1_games_won += 1
-          else
-              puts "Tie. You both picked rock."
-          end
-
-      elsif @player1.moves.last == 2
-          if @player2.moves.last == 1
-              puts "Player1 wins! Paper covers rock."
-              @p1_games_won += 1
-          elsif @player2.moves.last == 3
-              puts "Player2 wins! Scissors cut paper."
-              @p2_games_won += 1
-          else
-              puts "Tie. you both picked paper."
-          end
-
+      p1 = @player1.moves.last
+      p2 = @player2.moves.last
+      if (p1 == 1 && p2 == 3) || (p1 == 2 && p2 == 1) || (p1 == 3 && p2 == 2)
+          puts "Player1 wins!"
+          @p1_games_won += 1
+      elsif
+          (p1 == 1 && p2 == 2) || (p1 == 2 && p2 == 3) || (p1 == 3 && p2 == 1)
+          puts "Player2 wins!"
+          @p2_games_won += 1
       else
-          if @player2.moves.last == 1
-             puts "Player2 wins! Rock smashes scissors."
-             @p2_games_won += 1
-          elsif @player2.moves.last == 2
-             puts "Player1 wins! Scissors cut paper."
-             @p1_games_won += 1
-          else
-             puts "Tie. You both picked scissors."
-          end
+        puts "Tie. Try again!"
       end
-    end #end of while
+    end   #end #end of while
   end  #end of method
 
   # Public: #winner_of_match
