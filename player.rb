@@ -13,11 +13,10 @@
 
 class Player
   
-  attr_accessor :name, :games_won, :moves
+  attr_accessor :name, :turn, :moves
   
   def initialize( name )
     @name = name
-    @games_won = 0
     @turn = 0
     @moves = []
       

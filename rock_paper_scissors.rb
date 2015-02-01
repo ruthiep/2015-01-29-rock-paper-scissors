@@ -11,7 +11,7 @@ require_relative 'player'
 # @p2_games_won          - Integer: tracks the number of games won for p2 (player2).
 #
 # Public Methods:
-# #start_game
+# #get_players
 # #make_a_move
 # #winner_of_match
 # #winner_of_game
@@ -26,8 +26,26 @@ class RockPaperScissors
     @p1_games_won = 0
     @p2_games_won = 0
   end
+
+  # Public: #play_game
+  # Calls the methods to run the game and displays a message for the winner.
+  #
+  # Parameters:
+  #
+  #
+  # Returns:
+  # @members: The completed hash.
+  #
+  # State changes:
+  # none
   
-  # Public: #start_game
+  def play_game
+    get_players
+    determine_winner(@player1, @player2)
+    
+  end
+    
+  # Public: #get_players
   # Gets user input for names of the new player objects.
   #
   # Parameters:
@@ -41,7 +59,7 @@ class RockPaperScissors
   # State changes:
   # creates new Player objects
   
-  def start_game     
+  def get_players
     puts "Let's play a game!\n Player 1, what is your name?"
     name = gets.chomp.capitalize
     @player1 = Player.new(name) 
@@ -50,6 +68,7 @@ class RockPaperScissors
     name = gets.chomp.capitalize
     @player2 = Player.new(name)
     puts "Ok, #{@player1.name} and #{@player2.name}, Good luck!!"
+    return @player1, @player2
   end
   
   # Public: #make_a_move
@@ -83,24 +102,25 @@ class RockPaperScissors
   
   def
      winner_of_game    
-    until @p1_games_won == 3 || @p2_games_won == 3
-      make_a_move
-      p1 = @player1.moves.last
-      p2 = @player2.moves.last
-      if (p1 == 1 && p2 == 3) || (p1 == 2 && p2 == 1) || (p1 == 3 && p2 == 2)
+      until @p1_games_won == 3 || @p2_games_won == 3
+        make_a_move
+        p1 = @player1.moves.last
+        p2 = @player2.moves.last
+        if (p1 == 1 && p2 == 3) || (p1 == 2 && p2 == 1) || (p1 == 3 && p2 == 2)
           puts "Player1 wins!"
           @p1_games_won += 1
-      elsif
+        elsif
           (p1 == 1 && p2 == 2) || (p1 == 2 && p2 == 3) || (p1 == 3 && p2 == 1)
           puts "Player2 wins!"
           @p2_games_won += 1
-      else
-        puts "Tie. Try again!"
-      end
-    end   #end #end of while
+        else
+          puts "Tie. Try again!"
+        end
+      end   #end #end of while
   end  #end of method
 
-  # Public: #winner_of_match
+  
+  # Public: #determine_winner
   # Calls all the methods needed to run the game and displays a message for the winner.
   #
   # Parameters:
@@ -112,17 +132,19 @@ class RockPaperScissors
   # State changes:
   # none
   
-  def winner_of_match
-    start_game
+  def determine_winner(player1, player2)
+    #get_players
     winner_of_game
-    puts @player1.moves.join(" ")
+    puts player1.moves.join(" ")
     if @p1_games_won == 3
-      puts "Nice match! #{@player1.name} wins!"
+      puts "Nice match! #{player1.name} wins!"
 
     else @p2_games_won == 3
-      puts "#{@player2.name} takes it this time!"
+      puts "#{player2.name} takes it this time!"
     end
   end
+
+
 
 end  #end of class
 
