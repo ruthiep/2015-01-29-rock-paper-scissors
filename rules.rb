@@ -6,40 +6,38 @@
 # name             - String: the name of the player obj.
 # games_won        - Integer: the running total of the player's wins during a best of three match. 
 # moves            - Integer: the choice they want for the game
+# p1               - Object: Player1 object
+# p2               - Object: Player2 object
 #
 # Public Methods:
-# #choose_a_move
+# #check_rules
 # 
 
 class Rules
   
   attr_accessor :name, :games_won, :moves, :p1, :p2
   
-  def initialize(name, p1, p2)
-    @name = name
+  def initialize
+    #@name = name
     @games_won = 0
     @turn = 0
     @moves = []
     @p1 = p1
     @p2 = p2
-    
-      
-  end
-
+          
+  end  
   
-  
-  
-  # Public: #winner_of_game
-  # Determines the winner of the game.
+  # Public: #check_rules
+  # Compares the players' moves to determine the winner.
   #
   # Parameters:
   #
   #
   # Returns:
-  # @???.
+  # result
   #
   # State changes:
-  # adds to @p1_games_won and @p2_games_won
+  # none
   
   def check_rules (move1, move2)
         result = 0
@@ -53,34 +51,8 @@ class Rules
         else
           result = -1
         end
-      end
-      return result   #end #end of while
+      return result
+      binding.pry   #end of if
   end  #end of method
-
   
-  # Public: #determine_winner
-  # Calls all the methods needed to run the game and displays a message for the winner.
-  #
-  # Parameters:
-  #
-  #
-  # Returns:
-  # @members: The completed hash.
-  #
-  # State changes:
-  # none
-  
-  def determine_winner(player1, player2)
-    #get_players
-    winner_of_game
-    puts player1.moves.join(" ")
-    if @p1_games_won == 3
-      puts "Nice match! #{player1.name} wins!"
-
-    else @p2_games_won == 3
-      puts "#{player2.name} takes it this time!"
-    end
-  end
-  
-
 end #end of class

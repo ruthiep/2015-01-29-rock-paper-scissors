@@ -1,6 +1,7 @@
 require 'pry'
 require_relative 'player'
-
+require_relative 'game'
+require_relative 'rules'
 
 # Class: RockPaperScissors
 #
@@ -12,9 +13,7 @@ require_relative 'player'
 #
 # Public Methods:
 # #get_players
-# #make_a_move
-# #winner_of_match
-# #winner_of_game
+# #play_game
 # #
 # 
 
@@ -23,26 +22,26 @@ class RockPaperScissors
   attr_accessor :player1, :player2
   
   def initialize 
-    @p1_games_won = 0
-    @p2_games_won = 0
+   #@p1_games_won = 0
+    #@p2_games_won = 0
   end
 
   # Public: #play_game
-  # Calls the methods to run the game and displays a message for the winner.
+  # Calls the method to create new players, creates a new Game object, and then calls determine_winner to display the winner.
   #
   # Parameters:
-  #
+  # none 
   #
   # Returns:
-  # @members: The completed hash.
+  # nil.
   #
   # State changes:
   # none
   
   def play_game
     get_players
-    determine_winner(@player1, @player2)
-    
+    g = Game.new(@player1, @player2)
+    g.determine_winner(@player1, @player2)      
   end
     
   # Public: #get_players
@@ -53,8 +52,8 @@ class RockPaperScissors
   #
   #
   # Returns:
-  # @player1.name   :name of player1 obj
-  # @player2.name   :name of player2 obj
+  # @player1   :player1 obj
+  # @player2   :player2 obj
   #
   # State changes:
   # creates new Player objects
@@ -70,80 +69,6 @@ class RockPaperScissors
     puts "Ok, #{@player1.name} and #{@player2.name}, Good luck!!"
     return @player1, @player2
   end
-  
-  # Public: #make_a_move
-  # Calls the choose_a_move method in Player class.
-  #
-  # Parameters:
-  #
-  #
-  # Returns:
-  # @moves:         :The number for the player's choice of move.
-  #
-  # State changes:
-  # creates a new @moves
-
-  def make_a_move
-    @player1.choose_a_move
-    @player2.choose_a_move
-  end
-  
-  # Public: #winner_of_game
-  # Determines the winner of the game.
-  #
-  # Parameters:
-  #
-  #
-  # Returns:
-  # @???.
-  #
-  # State changes:
-  # adds to @p1_games_won and @p2_games_won
-  
-  def
-     winner_of_game    
-      until @p1_games_won == 3 || @p2_games_won == 3
-        make_a_move
-        p1 = @player1.moves.last
-        p2 = @player2.moves.last
-        if (p1 == 1 && p2 == 3) || (p1 == 2 && p2 == 1) || (p1 == 3 && p2 == 2)
-          puts "Player1 wins!"
-          @p1_games_won += 1
-        elsif
-          (p1 == 1 && p2 == 2) || (p1 == 2 && p2 == 3) || (p1 == 3 && p2 == 1)
-          puts "Player2 wins!"
-          @p2_games_won += 1
-        else
-          puts "Tie. Try again!"
-        end
-      end   #end #end of while
-  end  #end of method
-
-  
-  # Public: #determine_winner
-  # Calls all the methods needed to run the game and displays a message for the winner.
-  #
-  # Parameters:
-  #
-  #
-  # Returns:
-  # @members: The completed hash.
-  #
-  # State changes:
-  # none
-  
-  def determine_winner(player1, player2)
-    #get_players
-    winner_of_game
-    puts player1.moves.join(" ")
-    if @p1_games_won == 3
-      puts "Nice match! #{player1.name} wins!"
-
-    else @p2_games_won == 3
-      puts "#{player2.name} takes it this time!"
-    end
-  end
-
 
 
 end  #end of class
